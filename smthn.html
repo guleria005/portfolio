@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rudhar Pal Guleria | Architecture</title>
+
+  <!-- Single, premium font import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* THE TRUE ENTERPRISE SAAS SYSTEM */
+    :root {
+      --bg: #000000;
+      --card: #0A0A0A;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.2);
+      --text-main: #FFFFFF;
+      --text-muted: #888888;
+      --accent: #FFB020;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Selection */
+    ::selection {
+      background: rgba(255, 176, 32, 0.2);
+      color: var(--accent);
+    }
+
+    /* The "Missing Something": The Vercel/Linear Grid Background */
+    .grid-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1200px;
+      z-index: -2;
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+    }
+
+    /* Ambient Hero Glow */
+    .hero-glow {
+      position: absolute;
+      top: -10%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(255, 176, 32, 0.08) 0%, transparent 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Layout Constraints */
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 120px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+    }
+
+    .nav-status {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 176, 32, 0.4);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      border: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 176, 32, 0.3);
+      background: rgba(255, 176, 32, 0.05);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-bottom: 32px;
+      width: fit-content;
+    }
+
+    /* Perfect Typography Execution */
+    h1 {
+      font-size: clamp(56px, 8vw, 84px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      max-width: 860px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #888888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin-bottom: 48px;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: #FFFFFF;
+      color: #000000;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: #E0E0E0;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #FFFFFF;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-hover);
+    }
+
+    /* Section Typography */
+    .sec-head {
+      margin-bottom: 64px;
+    }
+
+    .sec-head h2 {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      color: #FFFFFF;
+    }
+
+    .sec-head p {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Bento Grid System */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: #FFFFFF;
+    }
+
+    .pill-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .pill:hover {
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Projects */
+    .proj-hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 64px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 64px;
+      margin-bottom: 24px;
+      align-items: center;
+      transition: border-color 0.3s ease;
+    }
+
+    .proj-hero:hover {
+      border-color: var(--border-hover);
+    }
+
+    @media (max-width: 900px) {
+      .proj-hero {
+        grid-template-columns: 1fr;
+        padding: 40px;
+      }
+    }
+
+    .proj-meta {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .proj-title {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      color: #FFFFFF;
+    }
+
+    .proj-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* Abstract UI Graphic for SecureAuth */
+    .proj-graphic {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #050505;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .pg-head {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+    }
+
+    .pg-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #333;
+    }
+
+    .pg-body {
+      padding: 32px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .pg-line {
+      height: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+
+    .proj-secondary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* Telemetry Lists (No messy nodes, strict grid lines) */
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    @media (max-width: 800px) {
+      .telemetry-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .t-section h3 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .t-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 500px) {
+      .t-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 16px 0;
+      }
+    }
+
+    .t-date {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .t-body h4 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .t-body p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      padding: 60px 0;
+      font-size: 14px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .foot-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 600px) {
+      .foot-inner {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Architecting the "Missing" elements: Background grid and soft hero glow -->
+  <div class="grid-bg"></div>
+  <div class="hero-glow"></div>
+
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <div class="nav-status"></div> guleria_005
+      </div>
+      <div class="nav-links">
+        <a href="cv.pdf" target="_blank">View CV</a>
+        <a href="mailto:rudhar.guleria005@gmail.com">Contact</a>
+        <a href="https://github.com/guleria005" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/rudhar-pal-guleria" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div>
+        <div class="badge">CYBERSECURITY ENGINEERING STUDENT</div>
+        <h1>Rudhar Pal Guleria.</h1>
+        <p class="hero-desc">Architecting secure backend APIs, resilient authentication flows, and real-time data
+          processing infrastructure for enterprise environments.</p>
+
+        <div class="hero-actions">
+          <a href="#architecture" class="btn btn-primary">Initialize Deployment</a>
+          <a href="cv.pdf" target="_blank" class="btn btn-secondary">View CV</a>
+          <a href="mailto:rudhar.guleria005@gmail.com" class="btn btn-secondary">Contact System</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Architecture -->
+    <section id="capabilities">
+      <div class="sec-head">
+        <h2>Technical Architecture</h2>
+        <p>The core infrastructure languages and tooling matrix I utilize.</p>
+      </div>
+
+      <div class="bento">
+        <div class="card">
+          <h3>Languages & Runtimes</h3>
+          <div class="pill-wrap">
+            <span class="pill">Python</span><span class="pill">C++</span><span class="pill">C</span>
+            <span class="pill">JavaScript</span><span class="pill">Java</span><span class="pill">SQL</span>
+            <span class="pill">Bash</span><span class="pill">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Frameworks & Libraries</h3>
+          <div class="pill-wrap">
+            <span class="pill">Django</span><span class="pill">Django REST Framework</span>
+            <span class="pill">React.js</span><span class="pill">Tailwind CSS</span>
+            <span class="pill">Leaflet</span><span class="pill">Axios</span>
+          </div>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+          <h3>Data & Security Platforms</h3>
+          <div class="pill-wrap">
+            <span class="pill">PostgreSQL</span><span class="pill">MySQL</span><span class="pill">Firebase</span>
+            <span class="pill">Wireshark</span><span class="pill">Nmap</span><span class="pill">Metasploit</span>
+            <span class="pill">Linux</span><span class="pill">Git / GitHub</span><span class="pill">REST APIs</span>
+            <span class="pill">Postman</span><span class="pill">Arduino</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deployed Systems -->
+    <section id="architecture">
+      <div class="sec-head">
+        <h2>Deployed Systems</h2>
+        <p>Enterprise integrations and scaled backend logic.</p>
+      </div>
+
+      <div class="proj-hero">
+        <div>
+          <span class="proj-meta">IDENTITY & ACCESS MANAGEMENT | FEB '26</span>
+          <h3 class="proj-title">SecureAuth System</h3>
+          <p class="proj-desc">Architected a secure backend API using Django REST Framework and PostgreSQL to enforce
+            robust Identity and Access Management (IAM) protocols.</p>
+          <p class="proj-desc">Engineered a resilient authentication flow, mitigating vulnerabilities through secure
+            session management and an encrypted real-time activity dashboard to track anomalies.</p>
+          <div class="pill-wrap" style="margin-top: 32px;">
+            <span class="pill">Python</span>
+            <span class="pill">Django</span>
+            <span class="pill">PostgreSQL</span>
+          </div>
+        </div>
+
+        <div class="proj-graphic">
+          <div class="pg-head">
+            <div class="pg-dot" style="background:var(--accent); box-shadow:0 0 10px var(--accent);"></div>
+            <div class="pg-dot"></div>
+            <div class="pg-dot"></div>
+          </div>
+          <div class="pg-body">
+            <div class="pg-line" style="width: 30%; background: rgba(255, 176, 32, 0.1);"></div>
+            <div class="pg-line" style="width: 100%;"></div>
+            <div class="pg-line" style="width: 80%;"></div>
+            <div class="pg-line" style="width: 100%; height: 48px; margin-top: auto;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-secondary">
+        <div class="card">
+          <span class="proj-meta">AI PRODUCTIVITY PLATFORM | MAR '25</span>
+          <h3 style="font-size: 20px; font-weight: 600; color: #FFF; margin-bottom: 16px; letter-spacing: -0.02em;">ADHD
+            Productivity Assistant</h3>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">Developed an
+            accessible platform for neurodivergent individuals using React.js and Firebase. Integrated the Gemini API
+            via Axios for seamless, AI-driven daily task recommendations and location-aware routines using Leaflet.</p>
+          <div class="pill-wrap">
+            <span class="pill">React.js</span><span class="pill">Firebase</span><span class="pill">Gemini API</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="proj-meta">EMBEDDED HARDWARE LOGIC | DEC '24</span>
+          <h3 style="font-size: 20px; font-weight: 600; color: #FFF; margin-bottom: 16px; letter-spacing: -0.02em;">Fire
+            Alarm via Arduino</h3>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">Programmed an
+            Arduino Uno using C to process real-time environmental data. Engineered low-level hardware logic to trigger
+            immediate, automated physical alerts for fire hazard detection.</p>
+          <div class="pill-wrap">
+            <span class="pill">Arduino Uno</span><span class="pill">C</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Telemetry -->
+    <section>
+      <div class="sec-head">
+        <h2>Career Telemetry</h2>
+        <p>Education, technical training, and measurable achievements.</p>
+      </div>
+
+      <div class="telemetry-grid">
+        <div class="t-section">
+          <h3>Academic Operations</h3>
+
+          <div class="t-row">
+            <div class="t-date">Aug '23 - Present</div>
+            <div class="t-body">
+              <h4>Lovely Professional University, Punjab</h4>
+              <p>B.Tech - Computer Science and Engineering</p>
+            </div>
+          </div>
+          <div class="t-row">
+            <div class="t-date">Apr '22 - Mar '23</div>
+            <div class="t-body">
+              <h4>D.A.V. School, Nagrota Surian</h4>
+              <p>Intermediate (12th)</p>
+            </div>
+          </div>
+          <div class="t-row" style="border-bottom: none;">
+            <div class="t-date">Apr '20 - Mar '21</div>
+            <div class="t-body">
+              <h4>D.A.V. School, Nagrota Surian</h4>
+              <p>Matriculation (10th)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-section">
+          <h3>Training & Deployments</h3>
+
+          <div class="t-row">
+            <div class="t-date">Mar '24</div>
+            <div class="t-body">
+              <h4>Hackathon: Code of Duty</h4>
+              <p>Ranked 13th among 100+ Teams by demonstrating rapid prototyping and efficient teamwork.</p>
+            </div>
+          </div>
+          <div class="t-row">
+            <div class="t-date">Jun '25 - Jul '25</div>
+            <div class="t-body">
+              <h4>C++ Summer Training</h4>
+              <p>CSE Pathshala. Implemented OOP, DSA optimizations, and algorithmic efficiency.</p>
+            </div>
+          </div>
+          <div class="t-row" style="border-bottom: none;">
+            <div class="t-date">Feb '24 - Mar '24</div>
+            <div class="t-body">
+              <h4>Python Summer Training</h4>
+              <p>Code Sprint. Automation scripting and robust backend logic manipulation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Validation -->
+    <section>
+      <div class="sec-head">
+        <h2>Empirical Validation</h2>
+        <p>Verified solutions and technical certifications.</p>
+      </div>
+
+      <!-- The 150+ LeetCode card -->
+      <div class="card" style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 24px;">
+        <h2 style="font-size: 64px; font-weight: 500; color: #FFF; line-height: 1; margin-bottom: 8px;">150+</h2>
+        <p
+          style="font-size: 14px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;">
+          LeetCode Questions Solved</p>
+      </div>
+
+      <div class="bento" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+        <div class="card" style="padding: 24px;">
+          <p
+            style="font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.05em;">
+            OCT '25</p>
+          <h4 style="font-size: 15px; font-weight: 500; color: #FFF;">Social Networks</h4>
+        </div>
+        <div class="card" style="padding: 24px;">
+          <p
+            style="font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.05em;">
+            AUG '25</p>
+          <h4 style="font-size: 15px; font-weight: 500; color: #FFF;">CSS (Basic) Certificate</h4>
+        </div>
+        <div class="card" style="padding: 24px;">
+          <p
+            style="font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.05em;">
+            DEC '24</p>
+          <h4 style="font-size: 15px; font-weight: 500; color: #FFF;">Intro to Hardware & OS</h4>
+        </div>
+        <div class="card" style="padding: 24px;">
+          <p
+            style="font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.05em;">
+            DEC '24</p>
+          <h4 style="font-size: 15px; font-weight: 500; color: #FFF;">Bits & Bytes of Networking</h4>
+        </div>
+        <div class="card" style="padding: 24px;">
+          <p
+            style="font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.05em;">
+            DEC '24</p>
+          <h4 style="font-size: 15px; font-weight: 500; color: #FFF;">Fundamentals of Network Comm</h4>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container foot-inner">
+      <div style="display: flex; gap: 32px;">
+        <span style="font-weight: 500; color: #FFF;">Rudhar Pal Guleria</span>
+        <a href="mailto:rudhar.guleria005@gmail.com"
+          style="color: var(--text-muted); text-decoration: none;">rudhar.guleria005@gmail.com</a>
+      </div>
+      <div>
+        <span>DEPLOYED 2026</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
